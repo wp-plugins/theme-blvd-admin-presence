@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd Admin Presence
 Description: This plugin is will hide the your Theme Blvd theme's admin presence. Simply activate this plugin to hide theme's admin presence and disable the plugin to get it back.
-Version: 1.0.0
+Version: 1.0.1
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -27,8 +27,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 /* Add Filter */
 
-function themeblvd_admin_presence_filter( $config ) {
-	$config['admin']['options'] = false;
-	return $config;
+function themeblvd_admin_presence_filter( $setup ) {
+ 
+	// Disable Theme Options
+	$setup['admin']['options'] = false;
+ 
+	// Disable Layout Builder
+	$setup['admin']['builder'] = false;
+ 
+	// Widget Area Manager
+	$setup['admin']['sidebars'] = false;
+ 
+	// Disable Slider Manager
+	$setup['admin']['sliders'] = false;
+ 
+	return $setup;
+ 
 }
 add_filter( 'themeblvd_global_config', 'themeblvd_admin_presence_filter' );
